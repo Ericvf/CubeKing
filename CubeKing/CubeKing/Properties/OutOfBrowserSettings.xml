@@ -1,0 +1,15 @@
+<OutOfBrowserSettings ShortName="CubeKing" EnableGPUAcceleration="True" ShowInstallMenuItem="True">
+  <OutOfBrowserSettings.Blurb>CubeKing, because cubes are fun!</OutOfBrowserSettings.Blurb>
+  <OutOfBrowserSettings.WindowSettings>
+    <WindowSettings Title="CubeKing - appbyfex" Height="1080" Width="1920" />
+  </OutOfBrowserSettings.WindowSettings>
+  <OutOfBrowserSettings.SecuritySettings>
+    <SecuritySettings ElevatedPermissions="Required" />
+  </OutOfBrowserSettings.SecuritySettings>
+  <OutOfBrowserSettings.Icons>
+    <Icon Size="16,16">Assets/ico_16.png</Icon>
+    <Icon Size="32,32">Assets/ico_32.png</Icon>
+    <Icon Size="48,48">Assets/ico_48.png</Icon>
+    <Icon Size="128,128">Assets/ico_128.png</Icon>
+  </OutOfBrowserSettings.Icons>
+</OutOfBrowserSettings>

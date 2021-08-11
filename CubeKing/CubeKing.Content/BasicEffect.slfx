@@ -1,0 +1,111 @@
+sampler cubeSampler : register(s0);
+sampler logoSampler : register(s1);
+
+float4x4 WorldViewProjection;
+float4x4 World;
+
+float3 LightPosition;
+
+bool UseLighting;
+bool UseSticker;
+bool BigSticker;
+bool IsPainted;
+bool IsTexture;
+
+
+float4 StructureColor;
+float4 FaceColor;
+float Alpha;
+
+// Structs
+struct VS_INPUT
+{
+    float4 position				: POSITION;
+	float3 normal				: NORMAL;
+	float2 UV					: TEXCOORD0;
+	float2 UVt					: TEXCOORD1;
+};
+
+struct VS_OUTPUT
+{
+    float4 position				: POSITION;
+	float3 normalWorld			: TEXCOORD0;
+	float3 positionWorld		: TEXCOORD1;
+	float4 color				: COLOR0;		
+	float2 UV					: TEXCOORD2;
+	float2 UVt					: TEXCOORD3;
+};
+
+// Vertex Shader
+VS_OUTPUT mainVS(VS_INPUT In)
+{
+    VS_OUTPUT Out = (VS_OUTPUT)0;
+
+	// Compute projected position
+    Out.position = mul(In.position, WorldViewProjection);
+
+	// Compute world normal
+	Out.normalWorld = mul(In.normal,(float3x3) WorldViewProjection);
+
+	// Compute world position
+	Out.positionWorld = (mul(In.position, World)).xyz;
+
+	// Transmit vertex color
+	Out.color = FaceColor;
+	Out.UV = In.UV;
+	Out.UVt = In.UVt;
+
+    return Out;
+}
+
+// Pixel Shader
+float4 mainPS(VS_OUTPUT In) : COLOR
+{
+	if (!IsPainted)
+		return StructureColor;
+
+	float4 output = In.color;
+	
+	float4 tile = tex2D(cubeSampler, In.UV);
+
+	if (UseLighting)
+	{
+		// Light equation
+		float3 lightDirectionW = normalize(LightPosition - In.positionWorld);
+		float ndl = max(0, dot(In.normalWorld, lightDirectionW));
+
+		output = float4(In.color.rgb * ndl, In.color.a);
+	}
+	else
+	{
+		 output = lerp(StructureColor, output, 0.5f);
+		//output = output;
+	}
+
+	float4 result = lerp(StructureColor, output, tile.a);
+
+	if (UseSticker)
+	{
+		float2 uv = BigSticker ? In.UVt : In.UV;
+		float4 logo = tex2D(logoSampler, uv);
+
+		if (IsTexture)
+			result = lerp(result.rgba, logo.rgba, logo.a);
+		else
+			result = lerp(result, float4(0,0,0,1), logo.a);
+	}
+
+	result = lerp(float4(0,0,0,0), result, Alpha);
+	
+	return result;
+}
+
+// Technique
+technique MainTechnique
+{
+	pass P0
+	{ 
+		VertexShader = compile vs_2_0 mainVS(); // Must be a non-parameter entry point
+		PixelShader = compile ps_2_0 mainPS(); // Must be a non-parameter entry point
+	}
+}

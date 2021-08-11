@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{76CAF9D9-0D87-4929-899E-B02346C9F0DA}</ProjectGuid>
+    <ProjectTypeGuids>{A1591282-1198-4647-A2B1-27E5FF5F6F3B};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CubeKing</RootNamespace>
+    <AssemblyName>CubeKing</AssemblyName>
+    <TargetFrameworkIdentifier>Silverlight</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v5.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>true</SilverlightApplication>
+    <SupportedCultures>
+    </SupportedCultures>
+    <XapOutputs>true</XapOutputs>
+    <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
+    <XapFilename>CubeKing.xap</XapFilename>
+    <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
+    <SilverlightAppEntry>CubeKing.App</SilverlightAppEntry>
+    <TestPageFileName>Silverlight3dAppTestPage.html</TestPageFileName>
+    <CreateTestPage>true</CreateTestPage>
+    <ValidateXaml>true</ValidateXaml>
+    <EnableOutOfBrowser>false</EnableOutOfBrowser>
+    <OutOfBrowserSettingsFile>Properties\OutOfBrowserSettings.xml</OutOfBrowserSettingsFile>
+    <UsePlatformExtensions>false</UsePlatformExtensions>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <LinkedServerProject>
+    </LinkedServerProject>
+    <InBrowserSettingsFile>Properties\InBrowserSettings.xml</InBrowserSettingsFile>
+    <RequireInBrowserElevation>true</RequireInBrowserElevation>
+  </PropertyGroup>
+  <!-- This property group is only here to support building this project using the 
+       MSBuild 3.5 toolset. In order to work correctly with this older toolset, it needs 
+       to set the TargetFrameworkVersion to v3.5 -->
+  <PropertyGroup Condition="'$(MSBuildToolsVersion)' == '3.5'">
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AnimationExtensions.SL5, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Xna.Framework" />
+    <Reference Include="Microsoft.Xna.Framework.Content" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics.Extensions" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics.Shaders" />
+    <Reference Include="Microsoft.Xna.Framework.Math" />
+    <Reference Include="Microsoft.Xna.Framework.Toolkit" />
+    <Reference Include="mscorlib" />
+    <Reference Include="SilverlightContrib">
+      <HintPath>..\..\..\..\..\..\Downloads\Silverlight Contrib 2010.1 - Binaries\SilverlightContrib.dll</HintPath>
+    </Reference>
+    <Reference Include="SilverlightContrib.Controls">
+      <HintPath>..\..\..\..\..\..\Downloads\Silverlight Contrib 2010.1 - Binaries\SilverlightContrib.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="SilverlightContrib.Data">
+      <HintPath>..\..\..\..\..\..\Downloads\Silverlight Contrib 2010.1 - Binaries\SilverlightContrib.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="system" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Windows.Controls, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Controls.Toolkit, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Windows.Xna" />
+    <Reference Include="System.Windows.Browser" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization, Version=5.0.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DiscreteSlider.cs" />
+    <Compile Include="Core\BaseScene.cs" />
+    <Compile Include="Core\VM.cs" />
+    <Compile Include="Framework\ColorToBrushConverter.cs" />
+    <Compile Include="Core\Cubie.cs" />
+    <Compile Include="Core\Eqs.cs" />
+    <Compile Include="Core\FaceNormal.cs" />
+    <Compile Include="Core\Move.cs" />
+    <Compile Include="Core\VertexPositionColorNormalTexture.cs" />
+    <Compile Include="Framework\VisibilityConverter.cs" />
+    <Compile Include="Framework\XmlSerializationHelper.cs" />
+    <Compile Include="MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Core\CubeScene.cs" />
+    <Compile Include="Core\VertexPositionColorNormal.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </ApplicationDefinition>
+    <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\AppManifest.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\InBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\OutOfBrowserSettings.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Cubeking_001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Texture.png" />
+    <Resource Include="Assets\legend.png" />
+    <Resource Include="Assets\Animation.png" />
+    <Resource Include="Assets\New_cube.png" />
+    <Resource Include="Assets\Optimize.png" />
+    <Resource Include="Assets\Play.png" />
+    <Resource Include="Assets\Reflections.png" />
+    <Resource Include="Assets\Scramble.png" />
+    <Resource Include="Assets\Cube_settings.png" />
+    <Resource Include="Assets\Colors.png" />
+    <Content Include="Assets\ico_128.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ico_16.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ico_32.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\ico_48.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Resource Include="Assets\ico_64.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Silverlight\$(SilverlightVersion)\Microsoft.Silverlight.CSharp.targets" />
+  <PropertyGroup>
+    <XnaContentProject>..\CubeKing.Content\CubeKing.Content.contentproj</XnaContentProject>
+  </PropertyGroup>
+  <Target Name="BeforeBuild">
+    <MSBuild Projects="$(XnaContentProject)" Properties="XnaContentPipelineTargetPlatform=Windows;XnaContentPipelineTargetProfile=Reach" />
+    <CreateItem Include="$(XnaContentProject)">
+      <Output TaskParameter="Include" ItemName="XnaContentProjectItem" />
+    </CreateItem>
+    <CreateProperty Value="%(XnaContentProjectItem.RelativeDir)">
+      <Output TaskParameter="Value" PropertyName="XnaContentProjectPath" />
+    </CreateProperty>
+    <CreateItem Include="$(XnaContentProjectPath)cachefile*targetpath.txt">
+      <Output TaskParameter="Include" ItemName="XnaContentCacheFile" />
+    </CreateItem>
+    <ReadLinesFromFile File="@(XnaContentCacheFile)" Condition="Exists(@(XnaContentCacheFile))">
+      <Output TaskParameter="Lines" ItemName="XnaContentOutputs" />
+    </ReadLinesFromFile>
+    <CreateItem Include="@(XnaContentOutputs->'$(XnaContentProjectPath)bin\AnyCPU\$(Configuration)\%(Identity)')" AdditionalMetadata="Link=Content\%(RelativeDir)%(Filename)%(Extension)">
+      <Output TaskParameter="Include" ItemName="Content" />
+    </CreateItem>
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{A1591282-1198-4647-A2B1-27E5FF5F6F3B}">
+        <SilverlightProjectProperties />
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
